@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="main">
+    <textarea value="{{note.content}}"></textarea>
+    <rich-text nodes="{{preview}}"></rich-text>
+  </view>
+  <view class="info">
+    <text class="time">
+      <text class="label">Created</text>
+      <text class="value">{{ createdDate }}</text>
+    </text>
+    <text class="lines">
+      <text class="label">Lines</text>
+      <text class="value">{{ linesCount }}</text>
+    </text>
+    <text class="characters">
+      <text class="label">Characters</text>
+      <text class="value">{{ charactersCount }}</text>
+    </text>
+  </view>
+</view>

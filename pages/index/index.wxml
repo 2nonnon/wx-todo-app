@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<wxs module="handler">
+  var scrollHandler = function (event, ownerInstance) {
+    console.log(1)
+    console.log(event, ownerInstance)
+  }
+</wxs>
+
+<view class="container">
+  <view class="header">
+    <view class="filter">全部笔记</view>
+    <view class="count">{{notes.length}}条笔记</view>
+  </view>
+  <view class="list">
+    <scrollCard id="{{'note' + index}}" wx:for="{{notes}}" wx:key="id" data-id="{{item.id}}" class="scroll" capture-bind:touchstart="touchstartHandler" capture-bind:touchmove="touchmoveHandler" capture-bind:touchend="touchendHandler">
+      <view class="note" capture-bind:tap="selectNote" slot="before">
+        <view class="title">{{item.title}}</view>
+        <view class="time">{{item.created}}</view>
+      </view>
+      <view class="toolbar" slot="after">
+        <view class="top tool"></view>
+        <view class="star tool"></view>
+        <view class="delete tool"></view>
+      </view>
+    </scrollCard>
+    <!-- <scroll-view id="{{'note' + index}}" wx:for="{{notes}}" wx:key="id" data-id="{{item.id}}" class="scroll" scroll-x="true" enable-flex="true" enhanced="true" show-scrollbar="false" 
+    capture-bind:touchstart="touchstartHandler" capture-bind:touchmove="touchmoveHandler" capture-bind:touchend="touchendHandler"> -->
+    <!-- <view id="{{'note' + index}}" wx:for="{{notes}}" wx:key="id" data-id="{{item.id}}" class="scroll"  
+    capture-bind:touchstart="touchstartHandler" capture-bind:touchmove="touchmoveHandler" capture-bind:touchend="touchendHandler">
+      <view class="note" capture-bind:tap="selectNote">
+        <view class="title">{{item.title}}</view>
+        <view class="time">{{item.created}}</view>
+      </view>
+      <view class="toolbar">
+        <view class="top tool"></view>
+        <view class="star tool"></view>
+        <view class="delete tool"></view>
+      </view>
+    </view> -->
+  </view>
+  <view class="addTap" capture-bind:tap="addNote"></view>
+</view>

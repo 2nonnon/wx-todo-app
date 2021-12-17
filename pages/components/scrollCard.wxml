@@ -1,0 +1,4 @@
+<scroll-view scroll-x="true" enable-flex="true" enhanced="true" show-scrollbar="false" capture-bind:touchstart="touchstartHandler" capture-bind:touchmove="touchmoveHandler" capture-bind:touchend="touchendHandler" scroll-left="{{left}}" class="scroll">
+  <slot name="before"></slot>
+  <slot name="after"></slot>
+</scroll-view>
