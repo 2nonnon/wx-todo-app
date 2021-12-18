@@ -1,29 +1,70 @@
 .container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.scroll {
+  flex-grow: 1;
+  height: calc(100vh - 130rpx);
+  width: 100%;
+}
+.header {
   padding: 0 5%;
 }
 .title {
+  height: 70rpx;
+  line-height: 70rpx;
   font-size: 60rpx;
   font-weight: 700;
+  overflow-wrap: normal;
+  width: 100%;
 }
 .time {
   font-size: 30rpx;
   font-weight: 300;
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.main {
+  padding: 0 5%;
 }
 .text {
-  min-height: calc(100vh - 180rpx);
+  height: auto;
+  min-height: 100vh;
+  width: 100%;
 }
 .characters {
   text-align: end;
-  font-size: 30rpx;
+  font-size: 25rpx;
   font-weight: 300;
+  height: 100rpx;
+  line-height: 100rpx;
 }
-/* .tool {
-  height: 60rpx;
-  width: 60rpx;
-} */
-image {
+.toolbar,
+.editbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 25rpx;
+  height: 130rpx;
+  padding: 0 2%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.name {
+  text-align: center;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.toolbar image {
+  height: 50rpx;
+  width: 50rpx;
+}
+.anti {
+  transform-origin: center center;
+  transform: rotateY(180deg);
+}
+.editbar image {
   height: 60rpx;
   width: 60rpx;
 }
