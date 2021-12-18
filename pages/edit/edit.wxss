@@ -1,0 +1,29 @@
+.container {
+  padding: 0 5%;
+}
+.title {
+  font-size: 60rpx;
+  font-weight: 700;
+}
+.time {
+  font-size: 30rpx;
+  font-weight: 300;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.text {
+  min-height: calc(100vh - 180rpx);
+}
+.characters {
+  text-align: end;
+  font-size: 30rpx;
+  font-weight: 300;
+}
+/* .tool {
+  height: 60rpx;
+  width: 60rpx;
+} */
+image {
+  height: 60rpx;
+  width: 60rpx;
+}

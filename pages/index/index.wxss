@@ -1,10 +1,9 @@
 /**index.wxss**/
 .container {
   padding: 0 5%;
-  background-color: rgb(255, 255, 255);
   font-size: 35rpx;
   background-color: #F7F7F7;
-  min-height: 100%;
+  min-height: 100vh;
 }
 .header {
   position: sticky;

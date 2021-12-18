@@ -4,29 +4,44 @@ import {
 Page({
   data: {
     note: '',
+    content: '',
     preview: '',
-    createdDate: '',
-    linesCount: '',
-    charactersCount: ''
+    charactersCount: 0
   },
-  createdDateCompute() {
-    console.log(new Date(this.data.note.created))
-    return new Date(this.data.note.created).toDateString()
+  charactersCountCompute(content) {
+    return content.split('').length
   },
-  linesCountCompute() {
-    return this.data.note.content.split(/\r\n|\r|\n/).length
+  previewCompute(content) {
+    return marked.parse(content)
   },
-  charactersCountCompute() {
-    return this.data.note.content.split('').length
+  parseDate (time) {
+    const date = new Date(time)
+    return `${date.getFullYear()} ${date.getMonth()+1} ${date.getDate()} ${date.getHours()} ${date.getMinutes()}`
   },
-  previewCompute() {
-    return marked.parse(this.data.note.content)
+  inputHandler (e) {
+    console.log(e)
+    const value = e.detail.value
+    this.setData({
+      content: value,
+      charactersCount: this.charactersCountCompute(value)
+    })
   },
   onLoad() {
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.emit('acceptDataFromOpenedPage', {
       data: 'test'
     });
+    eventChannel.on('createNote', () => {
+      const time = Date.now()
+      const note = {
+        id: String(time),
+        title: '标题',
+        content: '',
+        edited: this.parseDate(time),
+        favorite: false
+      }
+      this.setData({'note': note})
+    })
     // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
     eventChannel.on('acceptDataFromOpenerPage', data => {
       this.setData({'note': data[0]})
