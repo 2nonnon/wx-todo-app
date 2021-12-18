@@ -1,4 +1,17 @@
 <scroll-view scroll-x="true" enable-flex="true" enhanced="true" show-scrollbar="false" capture-bind:touchstart="touchstartHandler" capture-bind:touchmove="touchmoveHandler" capture-bind:touchend="touchendHandler" scroll-left="{{left}}" class="scroll">
   <slot name="before"></slot>
-  <slot name="after"></slot>
+  <view class="toolbar">
+    <view class="top tool" capture-bind:tap="topHandler">
+      <image class="icon" src="../../icon/toped.svg" mode="scaleToFill" wx:if="{{isTop}}"></image>
+      <image class="icon" src="../../icon/top.svg" mode="scaleToFill" wx:else></image>
+    </view>
+    <view class="star tool" capture-bind:tap="starHandler">
+      <image class="icon" src="../../icon/star_b_000.svg" mode="scaleToFill" wx:if="{{isStar}}"></image>
+      <image class="icon" src="../../icon/star_line_000.svg" mode="scaleToFill" wx:else></image>
+    </view>
+    <view class="delete tool" capture-bind:tap="deleteHandler">
+      <image class="icon" src="../../icon/delete_000.svg" mode="scaleToFill" wx:if="{{isDelete}}"></image>
+      <image class="icon" src="../../icon/delete_000.svg" mode="scaleToFill" wx:else></image>
+    </view>
+  </view>
 </scroll-view>

@@ -66,27 +66,6 @@
   font-size: 30rpx;
   font-weight: 300;
 }
-.toolbar {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 150rpx;
-  min-width: 340rpx;
-}
-.tool {
-  height: 75rpx;
-  width: 75rpx;
-  border-radius: 50%;
-}
-.top {
-  background-color: #2AAE67;
-}
-.star {
-  background-color: #fb0;
-}
-.delete {
-  background-color: #f00;
-}
 .addTap {
   position: fixed;
   bottom: 150rpx;
