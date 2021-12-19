@@ -3,13 +3,21 @@ Component({
     left: 0,
     isStar: false,
     isTop: false,
-    isDelete: false
   },
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持
   },
   properties: {
-    noteId: String,
+    isStar: Boolean,
+    isTop: Boolean
+  },
+  lifetimes: {
+    attached: function() {
+      this.setData({
+        isTop: this.properties.isTop,
+        isStar: this.properties.isStar
+      })
+    },
   },
   methods: {
     topHandler (e) {
@@ -91,5 +99,5 @@ Component({
     //   }
     //   raf()
     // }
-  }
+  },
 })

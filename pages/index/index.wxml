@@ -12,10 +12,10 @@
     <view class="count">{{notes.length}} 条笔记</view>
   </view>
   <view class="list">
-    <scrollCard id="{{'note' + index}}" wx:for="{{notes}}" wx:key="id" data-id="{{item.id}}" noteId="{{item.id}}" class="scroll" 
+    <scrollCard id="{{'note' + index}}" wx:for="{{notes}}" wx:key="id" data-id="{{item.id}}" isStar="{{item.isStar}}" isTop="{{item.isTop}}" class="scroll" 
     bindmytap="mytapHandler"
     capture-bind:touchstart="touchstartHandler" capture-bind:touchmove="touchmoveHandler" capture-bind:touchend="touchendHandler">
-      <view class="note" capture-bind:tap="selectNote" slot="before">
+      <view class="note" data-id="{{item.id}}" capture-bind:tap="selectNote" slot="before">
         <view class="title">{{item.title}}</view>
         <view class="time">{{item.edited}}</view>
       </view>

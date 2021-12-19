@@ -2,16 +2,13 @@
   <slot name="before"></slot>
   <view class="toolbar">
     <view class="top tool" capture-bind:tap="topHandler">
-      <image class="icon" src="../../icon/toped.svg" mode="scaleToFill" wx:if="{{isTop}}"></image>
-      <image class="icon" src="../../icon/top.svg" mode="scaleToFill" wx:else></image>
+      <image class="icon" src="{{isTop?'../../icon/toped.svg':'../../icon/top.svg'}}" mode="scaleToFill"></image>
     </view>
     <view class="star tool" capture-bind:tap="starHandler">
-      <image class="icon" src="../../icon/star_b_000.svg" mode="scaleToFill" wx:if="{{isStar}}"></image>
-      <image class="icon" src="../../icon/star_line_000.svg" mode="scaleToFill" wx:else></image>
+      <image class="icon" src="{{isStar?'../../icon/star_b_000.svg':'../../icon/star_line_000.svg'}}" mode="scaleToFill"></image>
     </view>
     <view class="delete tool" capture-bind:tap="deleteHandler">
-      <image class="icon" src="../../icon/delete_000.svg" mode="scaleToFill" wx:if="{{isDelete}}"></image>
-      <image class="icon" src="../../icon/delete_000.svg" mode="scaleToFill" wx:else></image>
+      <image class="icon" src="../../icon/delete_000.svg" mode="scaleToFill"></image>
     </view>
   </view>
 </scroll-view>

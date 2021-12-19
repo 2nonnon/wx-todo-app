@@ -1,11 +1,11 @@
 <view class="container">
   <scroll-view enhanced="true" scroll-y="true" class="scroll">
     <view class="header">
-      <input class="title" value="{{title}}" bindinput="titleInputHandler" bindfocus="focusHandler"></input>
-      <view class="time">{{edited}}</view>
+      <input class="title" value="{{note.title}}" bindinput="titleInputHandler" bindfocus="focusHandler"></input>
+      <view class="time">{{note.edited}}</view>
     </view>
     <view class="main">
-      <textarea class="text" value="{{content}}" bindinput="contentInputHandler" bindfocus="focusHandler"></textarea>
+      <textarea class="text" value="{{note.content}}" bindinput="contentInputHandler" bindfocus="focusHandler"></textarea>
       <view class="characters">共 {{charactersCount}} 字</view>
     </view>
   </scroll-view>
@@ -21,19 +21,19 @@
     </view>
   </view>
   <view class="toolbar" wx:else>
-    <view>
+    <view class="tool">
       <image src="../../icon/share.svg" mode="aspectFill"></image>
       <view class="name">分享</view>
     </view>
-    <view>
-      <image src="../../icon/star_line_fff.svg" mode="aspectFill"></image>
-      <view class="name">收藏</view>
+    <view class="tool">
+      <image src="{{note.isStar?'../../icon/star_b_green.svg':'../../icon/star_line_fff.svg'}}" mode="aspectFill"></image>
+      <view class="name">{{note.isStar?'已收藏':'收藏'}}</view>
     </view>
-    <view>
+    <view class="tool">
       <image src="../../icon/delete.svg" mode="aspectFill"></image>
       <view class="name">删除</view>
     </view>
-    <view>
+    <view class="tool">
       <image src="../../icon/print.svg" mode="aspectFill"></image>
       <view class="name">打印</view>
     </view>

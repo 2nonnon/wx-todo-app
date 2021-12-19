@@ -3,13 +3,10 @@ import {
 } from "../../utils/marked.min";
 Page({
   data: {
-    id: '',
-    title: '标题',
-    content: '',
-    edited: '',
-    favorite: false,
+    note: null,
     charactersCount: 0,
     isEditing: false,
+    isCreat: false
   },
   charactersCountCompute(content) {
     return content.split('').length
@@ -23,13 +20,13 @@ Page({
   },
   titleInputHandler(e) {
     this.setData({
-      'title': e.detail.value
+      'note.title': e.detail.value
     })
   },
   contentInputHandler(e) {
     const value = e.detail.value
     this.setData({
-      content: value,
+      'note.content': value,
       charactersCount: this.charactersCountCompute(value)
     })
   },
@@ -42,35 +39,41 @@ Page({
     this.setData({
       'isEditing': false
     })
-    const time = Date.now()
-    const note = {
-      id: String(time),
-      title: this.data.title,
-      content: this.data.content,
-      edited: this.parseDate(time),
-      favorite: this.data.favorite
-    }
+    this.setData({'note.edited': this.parseDate(Date.now())})
     const eventChannel = this.getOpenerEventChannel()
-    eventChannel.emit('saveNote', {
-      note
-    });
+    if (this.data.isCreat) {
+      eventChannel.emit('saveNote', {
+        note
+      });
+    } else {
+      eventChannel.emit('saveChange', {
+        note
+      });
+    }
   },
   onLoad() {
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('createNote', () => {
+      const time = Date.now()
+      const note = {
+        id: String(time),
+        title: '标题',
+        content: '',
+        edited: this.parseDate(time),
+        isStar: false,
+        isTop: false,
+        isDelete: false
+      }
       this.setData({
-        edited: this.parseDate(Date.now())
+        note,
+        isCreat: true
       })
     })
     // 监听acceptDataFromOpenerPage事件，获取上一页面通过eventChannel传送到当前页面的数据
-    eventChannel.on('acceptDataFromOpenerPage', data => {
+    eventChannel.on('editNote', data => {
       const note = data[0]
       this.setData({
-        id: note.id,
-        title: note.title,
-        content: note.content,
-        edited: note.edited,
-        favorite: note.favorite,
+        note: note,
         charactersCount: this.charactersCountCompute(note.content),
       })
     })
