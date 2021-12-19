@@ -4,12 +4,12 @@
   font-size: 35rpx;
   background-color: #F7F7F7;
   min-height: 100vh;
+  transition: all .3s;
 }
 .header {
   position: sticky;
   left: 0;
   top: 0;
-  padding: 0 4%;
   height: 160rpx;
   background-color: inherit;
   z-index: 999;
@@ -17,11 +17,14 @@
 .filter {
   height: 100rpx;
   font-size: 50rpx;
+  font-weight: 500;
   line-height: 130rpx;
+  padding-left: 2%;
 }
 .count {
   font-size: 30rpx;
   font-weight: 300;
+  padding-left: 2.5%;
 }
 .list {
   display: flex;
@@ -60,6 +63,7 @@
 }
 .title {
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 .time {

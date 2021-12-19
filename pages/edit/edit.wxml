@@ -1,39 +1,39 @@
 <view class="container">
   <scroll-view enhanced="true" scroll-y="true" class="scroll">
     <view class="header">
-      <input class="title" value="{{note.title}}" bindinput="titleInputHandler" bindfocus="focusHandler"></input>
+      <textarea class="title" value="{{note.title}}" bindinput="titleInputHandler" bindfocus="focusHandler" maxlength="50" auto-height="true" show-confirm-bar="false" confirm-type="done"></textarea>
       <view class="time">{{note.edited}}</view>
     </view>
     <view class="main">
-      <textarea class="text" value="{{note.content}}" bindinput="contentInputHandler" bindfocus="focusHandler"></textarea>
+      <textarea class="text" value="{{note.content}}" bindinput="contentInputHandler" bindfocus="focusHandler" auto-focus="{{autoFocus}}" adjust-position="true" show-confirm-bar="false"></textarea>
       <view class="characters">共 {{charactersCount}} 字</view>
     </view>
   </scroll-view>
   <view class="editbar" wx:if="{{isEditing}}">
-    <view>
-      <image src="../../icon/goback_un.svg" mode="scaleToFill"></image>
+    <view capture-bind:tap="gobackHandler">
+      <image src="{{goback?'../../icon/goback_act.svg':'../../icon/goback_un.svg'}}" mode="scaleToFill"></image>
     </view>
-    <view class="anti">
-      <image src="../../icon/goback_un.svg" mode="scaleToFill"></image>
+    <view class="anti" capture-bind:tap="gofrontHandler">
+      <image src="{{gofront?'../../icon/goback_act.svg':'../../icon/goback_un.svg'}}" mode="scaleToFill"></image>
     </view>
     <view capture-bind:tap="storeHandler">
       <image src="../../icon/store.svg" mode="aspectFill"></image>
     </view>
   </view>
   <view class="toolbar" wx:else>
-    <view class="tool">
+    <!-- <view class="tool" capture-bind:tap="shareHandler">
       <image src="../../icon/share.svg" mode="aspectFill"></image>
       <view class="name">分享</view>
-    </view>
-    <view class="tool">
+    </view> -->
+    <view class="tool" capture-bind:tap="starHandler">
       <image src="{{note.isStar?'../../icon/star_b_green.svg':'../../icon/star_line_fff.svg'}}" mode="aspectFill"></image>
       <view class="name">{{note.isStar?'已收藏':'收藏'}}</view>
     </view>
-    <view class="tool">
+    <view class="tool" capture-bind:tap="deleteHandler">
       <image src="../../icon/delete.svg" mode="aspectFill"></image>
       <view class="name">删除</view>
     </view>
-    <view class="tool">
+    <view class="tool" capture-bind:tap="printHandler">
       <image src="../../icon/print.svg" mode="aspectFill"></image>
       <view class="name">打印</view>
     </view>

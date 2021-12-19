@@ -19,7 +19,9 @@ Page({
             key: 'notes',
             data: JSON.stringify(newNotes)
           })
-        }
+        },
+        saveChange: this.saveChange,
+        deleteNote: this.deleteNote
       },
       success: function (res) {
         // 通过eventChannel向被打开页面传送数据
@@ -36,14 +38,42 @@ Page({
       url: '/pages/edit/edit',
       events: {
         // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-        saveChange: function (data) {
-          console.log(data.note)
-        }
+        saveChange: this.saveChange,
+        deleteNote: this.deleteNote
       },
       success: function (res) {
         // 通过eventChannel向被打开页面传送数据
         res.eventChannel.emit('editNote', note)
       }
+    })
+  },
+  saveChange (data) {
+    console.log(data.note)
+    const newNotes = this.changeHandler(data.note)
+    this.setData({
+      'notes': newNotes
+    })
+    wx.setStorage({
+      key: 'notes',
+      data: JSON.stringify(newNotes)
+    })
+  },
+  deleteNote (data) {
+    const newNotes = this.isDeleteHandler(data.noteId)
+    this.setData({
+      'notes': newNotes
+    })
+    wx.setStorage({
+      key: 'notes',
+      data: JSON.stringify(newNotes)
+    })
+  },
+  changeHandler (note) {
+    return [...this.data.notes].map(item => {
+      if (item.id === note.id) {
+        return note
+      }
+      return item
     })
   },
   isTopHandler (noteId, type, val) {
@@ -53,6 +83,20 @@ Page({
       }
       return note
     })
+    if (val) {
+      newNotes.sort((a, b) => {
+        if (a.isTop && b.isTop) return 0
+        else if (a.isTop) return -1
+        else return 1
+      })
+    } else {
+      newNotes.sort((a, b) => parseInt(a.id) - parseInt(b.id))
+      newNotes.sort((a, b) => {
+        if (a.isTop && b.isTop) return 0
+        else if (a.isTop) return -1
+        else return 1
+      })
+    }
     return newNotes
   },
   isStarHandler (noteId, type, val) {
