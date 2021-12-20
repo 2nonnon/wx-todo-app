@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" style="--bottom:{{bottom}}rpx;">
   <scroll-view enhanced="true" scroll-y="true" class="scroll">
     <view class="header">
       <textarea class="title" value="{{note.title}}" bindinput="titleInputHandler" bindfocus="focusHandler" maxlength="50" auto-height="true" show-confirm-bar="false" confirm-type="done"></textarea>
@@ -21,21 +21,21 @@
     </view>
   </view>
   <view class="toolbar" wx:else>
-    <!-- <view class="tool" capture-bind:tap="shareHandler">
-      <image src="../../icon/share.svg" mode="aspectFill"></image>
-      <view class="name">分享</view>
-    </view> -->
+    <view class="tool" capture-bind:tap="topHandler">
+      <image src="{{note.isTop?'../../icon/top_mian.svg':'../../icon/top_line.svg'}}" mode="aspectFill"></image>
+      <view class="name">{{note.isTop?'取消置顶':'置顶'}}</view>
+    </view>
     <view class="tool" capture-bind:tap="starHandler">
-      <image src="{{note.isStar?'../../icon/star_b_green.svg':'../../icon/star_line_fff.svg'}}" mode="aspectFill"></image>
-      <view class="name">{{note.isStar?'已收藏':'收藏'}}</view>
+      <image src="{{note.isStar?'../../icon/star_b_orange.svg':'../../icon/star_line_fff.svg'}}" mode="aspectFill"></image>
+      <view class="name">{{note.isStar?'取消收藏':'收藏'}}</view>
     </view>
     <view class="tool" capture-bind:tap="deleteHandler">
       <image src="../../icon/delete.svg" mode="aspectFill"></image>
       <view class="name">删除</view>
     </view>
-    <view class="tool" capture-bind:tap="printHandler">
+    <!-- <view class="tool" capture-bind:tap="printHandler">
       <image src="../../icon/print.svg" mode="aspectFill"></image>
       <view class="name">打印</view>
-    </view>
+    </view> -->
   </view>
 </view>

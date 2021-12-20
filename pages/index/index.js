@@ -3,6 +3,17 @@ var app = getApp()
 Page({
   data: {
     notes: [],
+    isActive: false,
+    choose: '全部笔记',
+    types: ['全部笔记', '已收藏']
+  },
+  filterHandler () {
+    this.setData({'isActive': !this.data.isActive})
+  },
+  typeHandler (e) {
+    console.log(e)
+    const index = e.currentTarget.dataset.index
+    this.setData({'choose': this.data.types[index]})
   },
   addNote: function () {
     wx.navigateTo({

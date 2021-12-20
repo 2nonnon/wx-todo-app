@@ -1,12 +1,13 @@
 .container {
-  height: 100vh;
+  height: calc(100vh - var(--bottom));
   display: flex;
   flex-direction: column;
 }
 .scroll {
   flex-grow: 1;
-  height: calc(100vh - 130rpx);
+  height: calc(100% - 130rpx);
   width: 100%;
+  /* margin-bottom: 130rpx; */
 }
 .header {
   padding: 0 5%;
@@ -44,9 +45,13 @@
   align-items: center;
   font-size: 25rpx;
   height: 130rpx;
+  width: 100%;
   padding: 0 2%;
   flex-grow: 0;
   flex-shrink: 0;
+  /* position: fixed;
+  bottom: 0;
+  left: 0; */
 }
 .tool {
   height: 130rpx;

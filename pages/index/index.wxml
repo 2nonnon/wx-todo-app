@@ -1,14 +1,13 @@
 <!--index.wxml-->
-<wxs module="handler">
-  var scrollHandler = function (event, ownerInstance) {
-    console.log(1)
-    console.log(event, ownerInstance)
-  }
-</wxs>
-
 <view class="container">
   <view class="header">
-    <view class="filter">全部笔记</view>
+    <view class="filter" bindtap="filterHandler">
+      <view class="type">{{choose}}</view>
+      <image class="filter_icon {{isActive?'active':''}}" mode="aspectFit" src="/icon/triangle.svg"></image>
+    </view>
+    <view class="typelist {{isActive?'show':''}}">
+      <view class="typeitem" wx:for="{{types}}" wx:key="index" bindtap="typeHandler" data-index="{{index}}">{{item}}</view>
+    </view>
     <view class="count">{{notes.length}} 条笔记</view>
   </view>
   <view class="list">
@@ -17,9 +16,17 @@
     capture-bind:touchstart="touchstartHandler" capture-bind:touchmove="touchmoveHandler" capture-bind:touchend="touchendHandler">
       <view class="note" data-id="{{item.id}}" capture-bind:tap="selectNote" slot="before">
         <view class="title">{{item.title}}</view>
-        <view class="time">{{item.edited}}</view>
+        <view class="status">
+          <view class="time">{{item.edited}}</view>
+          <image class="icon" mode="aspectFill" src="/icon/top_mian.svg" wx:if="{{item.isTop}}"></image>
+          <image class="icon" mode="aspectFill" src="/icon/star_b_orange.svg" wx:if="{{item.isStar}}"></image>
+        </view>
       </view>
     </scrollCard>
+  </view>
+  <view class="tip" wx:if="{{notes.length === 0}}">
+    <image class="tip_icon" mode="aspectFill" src="/icon/empty.svg"></image>
+    <view class="tip_text">还没有笔记哦，来创建一条吧</view>
   </view>
   <view class="addTap" capture-bind:tap="addNote"></view>
 </view>

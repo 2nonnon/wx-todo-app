@@ -1,6 +1,3 @@
-import {
-  marked
-} from "../../utils/marked.min";
 Page({
   data: {
     note: null,
@@ -11,7 +8,8 @@ Page({
     goback: false,
     gofront: false,
     backStack: [],
-    frontStack: []
+    frontStack: [],
+    bottom: 0,
   },
   charactersCountCompute(content) {
     return content.split('').length
@@ -103,6 +101,15 @@ Page({
   shareHandler(e) {
     console.log(e)
   },
+  topHandler(e) {
+    this.setData({
+      'note.isTop': !this.data.note.isTop
+    })
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.emit('saveChange', {
+      note: this.data.note
+    })
+  },
   starHandler(e) {
     this.setData({
       'note.isStar': !this.data.note.isStar
@@ -155,6 +162,9 @@ Page({
     wx.showShareMenu({
       withShareTicket: true,
       menus: ['shareAppMessage', 'shareTimeline']
+    }),
+    wx.onKeyboardHeightChange(res => {
+      console.log(res.height)
     })
   }
 })
