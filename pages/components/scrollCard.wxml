@@ -1,6 +1,9 @@
-<scroll-view scroll-x="true" enable-flex="true" enhanced="true" show-scrollbar="false" capture-bind:touchstart="touchstartHandler" capture-bind:touchmove="touchmoveHandler" capture-bind:touchend="touchendHandler" scroll-left="{{left}}" class="scroll">
-  <slot name="before"></slot>
-  <view class="toolbar">
+<swiper duration="300" class="scroll">
+  <swiper-item class="item">
+    <slot name="before"></slot>
+  </swiper-item>
+  <swiper-item class="item">
+    <view class="toolbar">
     <view class="top tool" capture-bind:tap="topHandler">
       <image class="icon" src="{{isTop?'../../icon/toped.svg':'../../icon/top.svg'}}" mode="scaleToFill"></image>
     </view>
@@ -11,4 +14,5 @@
       <image class="icon" src="../../icon/delete_000.svg" mode="scaleToFill"></image>
     </view>
   </view>
-</scroll-view>
+  </swiper-item>
+</swiper>

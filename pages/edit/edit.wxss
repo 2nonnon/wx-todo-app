@@ -1,36 +1,52 @@
 .container {
   height: calc(100vh - var(--bottom));
+  /* height: calc(100vh - 100rpx); */
   display: flex;
   flex-direction: column;
 }
+
+.swiper {
+  flex-grow: 1;
+  flex-shrink: 1;
+  /* height: calc(100vh - 130rpx); */
+}
+.swiper-item {
+  display: flex;
+}
+
 .scroll {
   flex-grow: 1;
-  height: calc(100% - 130rpx);
+  flex-shrink: 1;
+  /* height: calc(100vh - 130rpx); */
   width: 100%;
-  /* margin-bottom: 130rpx; */
 }
+
 .header {
   padding: 0 5%;
 }
+
 .title {
   font-size: 60rpx;
   font-weight: 500;
   width: 100%;
 }
+
 .time {
   font-size: 30rpx;
   font-weight: 300;
-  height: 90rpx;
-  line-height: 90rpx;
+  height: 70rpx;
+  line-height: 70rpx;
 }
+
 .main {
   padding: 0 5%;
 }
+
 .text {
-  height: auto;
   min-height: 100vh;
   width: 100%;
 }
+
 .characters {
   text-align: end;
   font-size: 25rpx;
@@ -38,6 +54,7 @@
   height: 100rpx;
   line-height: 100rpx;
 }
+
 .toolbar,
 .editbar {
   display: flex;
@@ -46,13 +63,10 @@
   font-size: 25rpx;
   height: 130rpx;
   width: 100%;
-  padding: 0 2%;
   flex-grow: 0;
   flex-shrink: 0;
-  /* position: fixed;
-  bottom: 0;
-  left: 0; */
 }
+
 .tool {
   height: 130rpx;
   width: 130rpx;
@@ -61,19 +75,23 @@
   justify-content: center;
   align-items: center;
 }
+
 .name {
   text-align: center;
   height: 40rpx;
   line-height: 40rpx;
 }
+
 .toolbar image {
   height: 50rpx;
   width: 50rpx;
 }
+
 .anti {
   transform-origin: center center;
   transform: rotateY(180deg);
 }
+
 .editbar image {
   height: 60rpx;
   width: 60rpx;

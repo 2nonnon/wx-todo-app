@@ -12,10 +12,7 @@ Page({
     bottom: 0,
   },
   charactersCountCompute(content) {
-    return content.split('').length
-  },
-  previewCompute(content) {
-    return marked.parse(content)
+    return `${content}`.split('').length
   },
   parseDate(time) {
     const date = new Date(time)
@@ -23,11 +20,11 @@ Page({
   },
   titleInputHandler(e) {
     this.setData({
-      'note.title': e.detail.value
+      'note.title': `${e.detail.value}`
     })
   },
   contentInputHandler(e) {
-    const value = e.detail.value
+    const value = `${e.detail.value}`
     const tmpb = [...this.data.backStack]
     tmpb.push(this.data.note.content)
     const flag = tmpb.length > 0 ? true : false
@@ -83,9 +80,6 @@ Page({
       backStack: [],
       frontStack: [],
       'note.edited': this.parseDate(Date.now())
-    })
-    this.setData({
-      
     })
     const eventChannel = this.getOpenerEventChannel()
     if (this.data.isCreat) {
@@ -162,9 +156,14 @@ Page({
     wx.showShareMenu({
       withShareTicket: true,
       menus: ['shareAppMessage', 'shareTimeline']
-    }),
+    })
     wx.onKeyboardHeightChange(res => {
       console.log(res.height)
+      this.setData({
+        'bottom': res.height,
+        'note.content': res.height
+      })
+      console.log(1, this.data.bottom)
     })
   }
 })

@@ -1,14 +1,18 @@
-<view class="container" style="--bottom:{{bottom}}rpx;">
-  <scroll-view enhanced="true" scroll-y="true" class="scroll">
-    <view class="header">
-      <textarea class="title" value="{{note.title}}" bindinput="titleInputHandler" bindfocus="focusHandler" maxlength="50" auto-height="true" show-confirm-bar="false" confirm-type="done"></textarea>
-      <view class="time">{{note.edited}}</view>
-    </view>
-    <view class="main">
-      <textarea class="text" value="{{note.content}}" bindinput="contentInputHandler" bindfocus="focusHandler" auto-focus="{{autoFocus}}" adjust-position="true" show-confirm-bar="false"></textarea>
-      <view class="characters">共 {{charactersCount}} 字</view>
-    </view>
-  </scroll-view>
+<view class="container" style="--bottom:{{bottom}}px;">
+  <swiper vertical="true" class="swiper">
+    <swiper-item class="swiper-item">
+      <scroll-view enhanced="true" scroll-y="true" class="scroll">
+        <view class="header">
+          <textarea class="title" value="{{note.title}}" bindinput="titleInputHandler" bindfocus="focusHandler" maxlength="50" auto-height="true" show-confirm-bar="false" confirm-type="done"></textarea>
+          <view class="time">{{note.edited}}</view>
+        </view>
+        <view class="main">
+          <textarea class="text" value="{{note.content}}" bindinput="contentInputHandler" bindfocus="focusHandler" auto-focus="{{autoFocus}}" adjust-position="true" show-confirm-bar="false"></textarea>
+          <view class="characters">共 {{charactersCount}} 字</view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
   <view class="editbar" wx:if="{{isEditing}}">
     <view capture-bind:tap="gobackHandler">
       <image src="{{goback?'../../icon/goback_act.svg':'../../icon/goback_un.svg'}}" mode="scaleToFill"></image>

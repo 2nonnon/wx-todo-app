@@ -1,6 +1,5 @@
 /**index.wxss**/
 .container {
-  padding: 0 5%;
   font-size: 35rpx;
   background-color: #F7F7F7;
   min-height: 100vh;
@@ -11,6 +10,7 @@
   left: 0;
   top: 0;
   height: 160rpx;
+  padding: 0 5%;
   background-color: inherit;
   z-index: 999;
 }
@@ -23,8 +23,8 @@
   height: 100rpx;
   font-size: 56rpx;
   font-weight: 500;
-  line-height: 130rpx;
-  padding-left: 2%;
+  line-height: 125rpx;
+  padding-left: 1%;
 }
 .typelist {
   display: none;
@@ -47,28 +47,34 @@
   transition: all .3s;
 }
 .active {
-  transform: rotateZ(180deg);
+  transform: rotateZ(-180deg);
 }
 .count {
   font-size: 30rpx;
   font-weight: 300;
-  padding-left: 2.5%;
+  padding-left: 2%;
+}
+.swiper {
+  min-height: calc(100vh - 160rpx);
+}
+.scroll-view {
+  height: 100%;
+  width: 100%;
 }
 .list {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 20rpx 0;
   width: 100%;
   padding-bottom: 300rpx;
 }
-.scroll {
+.scroll-card {
   width: 100%;
 }
 .note {
   box-sizing: border-box;
   flex-shrink: 0;
-  width: 100%;
+  width: 90%;
   height: 150rpx;
   display: flex;
   flex-direction: column;
