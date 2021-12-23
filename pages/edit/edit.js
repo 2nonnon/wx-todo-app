@@ -160,8 +160,7 @@ Page({
     wx.onKeyboardHeightChange(res => {
       console.log(res.height)
       this.setData({
-        'bottom': res.height,
-        'note.content': res.height
+        'bottom': res.height
       })
       console.log(1, this.data.bottom)
     })
