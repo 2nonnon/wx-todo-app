@@ -3,17 +3,17 @@ var app = getApp()
 Page({
   data: {
     notes: [],
+    stars: [],
     isActive: false,
     choose: '全部笔记',
-    types: ['全部笔记', '已收藏']
   },
   filterHandler () {
     this.setData({'isActive': !this.data.isActive})
   },
   typeHandler (e) {
     console.log(e)
-    const index = e.currentTarget.dataset.index
-    this.setData({'choose': this.data.types[index]})
+    const type = e.currentTarget.dataset.type
+    this.setData({'choose': type})
   },
   addNote: function () {
     wx.navigateTo({
@@ -23,6 +23,7 @@ Page({
         saveNote: (res) => {
           const newNotes = [...this.data.notes]
           newNotes.push(res.note)
+          this.updateStars(newNotes)
           this.setData({
             'notes': newNotes
           })
@@ -61,6 +62,7 @@ Page({
   saveChange (data) {
     console.log(data.note)
     const newNotes = this.changeHandler(data.note)
+    this.updateStars(newNotes)
     this.setData({
       'notes': newNotes
     })
@@ -71,6 +73,7 @@ Page({
   },
   deleteNote (data) {
     const newNotes = this.isDeleteHandler(data.noteId)
+    this.updateStars(newNotes)
     this.setData({
       'notes': newNotes
     })
@@ -131,6 +134,7 @@ Page({
     const noteId = e.currentTarget.dataset.id
     const newNotes = this[`${type}Handler`](noteId, type, e.detail[type])
     console.log(newNotes)
+    this.updateStars(newNotes)
     this.setData({
       'notes': newNotes
     })
@@ -164,11 +168,20 @@ Page({
     //   console.log(res)
     // })
   },
+  updateStars (newNotes) {
+    const newStars = newNotes.filter(n => n.isStar)
+    this.setData({
+      'stars': newStars
+    })
+  },
   onLoad() {
     const cache = wx.getStorageSync('notes')
+    const notes = JSON.parse(cache)
+    const stars = notes.filter(n => n.isStar)
     if (cache) {
       this.setData({
-        'notes': JSON.parse(cache)
+        'notes': notes,
+        'stars': stars
       })
     }
   }

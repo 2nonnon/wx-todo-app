@@ -5,16 +5,29 @@
       <view class="type">{{choose}}</view>
       <image class="filter_icon {{isActive?'active':''}}" mode="aspectFit" src="/icon/triangle.svg"></image>
     </view>
-    <view class="typelist {{isActive?'show':''}}">
-      <view class="typeitem" wx:for="{{types}}" wx:key="index" bindtap="typeHandler" data-index="{{index}}">{{item}}</view>
-    </view>
-    <view class="count">{{notes.length}} 条笔记</view>
+    <view class="count">{{choose==='全部笔记'?notes.length:stars.length}} 条笔记</view>
   </view>
-  <swiper vertical="true" class="swiper">
+  <swiper vertical="true" class="typelist_swiper {{isActive?'show':''}}">
+    <swiper-item class="typelist_swiperitem">
+      <view class="typelist">
+        <view class="typeitem {{choose==='全部笔记'?'choosed':''}}" bindtap="typeHandler" data-type="全部笔记">
+          <image class="type_icon" src="{{choose==='全部笔记'?'/icon/all_type_acative.svg':'/icon/all_type_un.svg'}}" mode="aspectFill"></image>
+          <view class="type_text">全部笔记</view>
+          <view class="type_count">{{notes.length}}</view>
+        </view>
+        <view class="typeitem {{choose==='已收藏'?'choosed':''}}" bindtap="typeHandler" data-type="已收藏">
+          <image class="type_icon" src="{{choose==='已收藏'?'/icon/star_type_active.svg':'/icon/star_type_un.svg'}}" mode="aspectFill"></image>
+          <view class="type_text">已收藏</view>
+          <view class="type_count">{{stars.length}}</view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+  <swiper vertical="true" class="notelist_swiper">
     <swiper-item>
-      <scroll-view  enhanced="true" scroll-y="true" class="scroll-view">
+      <scroll-view enhanced="true" scroll-y="true" class="scroll-view">
         <view class="list">
-          <scrollCard id="{{'note' + index}}" wx:for="{{notes}}" wx:key="id" data-id="{{item.id}}" isStar="{{item.isStar}}" isTop="{{item.isTop}}" class="scroll-card" bindmytap="mytapHandler">
+          <scrollCard id="{{'note' + index}}" wx:for="{{choose==='全部笔记'?notes:stars}}" wx:key="id" data-id="{{item.id}}" isStar="{{item.isStar}}" isTop="{{item.isTop}}" class="scroll-card" bindmytap="mytapHandler">
             <view class="note" data-id="{{item.id}}" capture-bind:tap="selectNote" slot="before">
               <view class="title">{{item.title}}</view>
               <view class="status">

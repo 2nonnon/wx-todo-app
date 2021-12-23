@@ -3,7 +3,7 @@
   font-size: 35rpx;
   background-color: #F7F7F7;
   min-height: 100vh;
-  transition: all .3s;
+  position: relative;
 }
 .header {
   position: sticky;
@@ -12,7 +12,7 @@
   height: 160rpx;
   padding: 0 5%;
   background-color: inherit;
-  z-index: 999;
+  z-index: 9999;
 }
 .filter {
   display: flex;
@@ -25,21 +25,6 @@
   font-weight: 500;
   line-height: 125rpx;
   padding-left: 1%;
-}
-.typelist {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  left: 3%;
-  background-color: #000;
-  border-radius: 20%;
-}
-.typeitem {
-  color: #fff;
-  text-align: justify;
-}
-.show {
-  display: flex;
 }
 .filter_icon {
   height: 35rpx;
@@ -54,7 +39,62 @@
   font-weight: 300;
   padding-left: 2%;
 }
-.swiper {
+.typelist_swiper {
+  height: calc(100vh - 160rpx);
+  width: 100%;
+  position: absolute;
+  background-color: inherit;
+  z-index: 999;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all .5s;
+}
+.typelist_swiperitem {
+  display: flex;
+  justify-content: center;
+}
+.typelist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 30rpx;
+  width: 90%;
+  height: fit-content;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 10rpx;
+  background-color: #fff;
+}
+.typeitem {
+  background-color: #fff;
+  height: 110rpx;
+  width: 100%;
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.type_icon {
+  height: 60rpx;
+  width: 60rpx;
+  margin-left: 15rpx;
+}
+.type_text {
+  margin-left: 30rpx;
+}
+.type_count {
+  font-size: 30rpx;
+  margin-left: auto;
+  margin-right: 15rpx;
+}
+.choosed {
+  background-color: #CEDFFD;
+  color: #0B5AF8;
+}
+.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+.notelist_swiper {
   min-height: calc(100vh - 160rpx);
 }
 .scroll-view {
@@ -123,14 +163,15 @@
   position: fixed;
   bottom: 150rpx;
   right: 65rpx;
-  background-color: #2AAE67;
+  background-color: #0A58F6;
   color: #fff;
   height: 95rpx;
   width: 95rpx;
   border-radius: 50%;
-  box-shadow: 0rpx 8rpx 30rpx -8rpx #2aae6898;
+  box-shadow: 0rpx 8rpx 40rpx -18rpx #0A58F6;
   background-repeat: no-repeat;
   background-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
   background-size: 50% 5%, 5% 50%;
   background-position: center;
+  z-index: 9999;
 }

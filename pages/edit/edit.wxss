@@ -82,6 +82,14 @@
   line-height: 40rpx;
 }
 
+.isTop {
+  color: #2AAE67;
+}
+
+.isStar {
+  color: #fb0;
+}
+
 .toolbar image {
   height: 50rpx;
   width: 50rpx;
